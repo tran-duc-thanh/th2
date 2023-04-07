@@ -87,7 +87,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
             price = itemView.findViewById(R.id.item_price);
             info = itemView.findViewById(R.id.item_desc);
             btnRemove = itemView.findViewById(R.id.item_btn_remove);
-            btnRemove.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
