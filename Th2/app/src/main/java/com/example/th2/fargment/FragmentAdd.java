@@ -28,7 +28,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
     private Button btnAdd, btnUpdate;
     private RecyclerView recyclerView;
     private int pcurr;
-    private int[] imgs = {R.drawable.cat1,R.drawable.cat2,R.drawable.cat3,R.drawable.cat4,R.drawable.cat5,R.drawable.cat6,R.drawable.cat7,R.drawable.cat8,R.drawable.cat9,R.drawable.cat10};
+    private int[] imgs = {R.drawable.cat2,R.drawable.cat3,R.drawable.cat4,R.drawable.cat5,R.drawable.cat6,R.drawable.cat7,R.drawable.cat8,R.drawable.cat9,R.drawable.cat10};
 
     @Nullable
     @Override
@@ -46,6 +46,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
         recyclerView.setAdapter(adapter);
         adapter.setCatItemListener(this);
         btnAdd.setOnClickListener(view1 -> {
+            if (!this.validate()) return;
             String i = spinner.getSelectedItem().toString();
             int img;
             try {
@@ -53,11 +54,13 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
                 double price = Double.parseDouble(ePrice.getText().toString());
                 Cat cat = new Cat(img, eName.getText().toString(), price, eInfo.getText().toString());
                 adapter.add(cat);
+                this.resetForm();
             } catch (NumberFormatException e) {
-
+                ePrice.setError("Giá trị trường này là số");
             }
         });
         btnUpdate.setOnClickListener(view1 -> {
+            if (!this.validate()) return;
             String i = spinner.getSelectedItem().toString();
             int img;
             try {
@@ -67,6 +70,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
                 adapter.update(cat, pcurr);
                 btnUpdate.setVisibility(View.INVISIBLE);
                 btnAdd.setVisibility(View.VISIBLE);
+                this.resetForm();
             } catch (NumberFormatException e) {
 
             }
@@ -84,6 +88,21 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
         btnUpdate = view.findViewById(R.id.btnUpdate);
         recyclerView = view.findViewById(R.id.reView);
         btnUpdate.setVisibility(View.INVISIBLE);
+    }
+
+    private boolean validate () {
+        if ("".equals(eName.getText().toString().trim()) || "".equals(ePrice.getText().toString().trim())) {
+            eName.setError("Không được bỏ trống");
+            return false;
+        }
+        return true;
+    }
+
+    private void resetForm () {
+        eName.setText("");
+        ePrice.setText("");
+        eInfo.setText("");
+        spinner.setSelection(0);
     }
 
     @Override
