@@ -6,11 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.th2.fargment.FragmentAdd;
+import com.example.th2.fargment.FragmentList;
 import com.example.th2.fargment.FragmentSearch;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
 
-    private int numPage = 2;
+    private int numPage = 3;
 
     public FragmentAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
@@ -23,6 +24,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
         switch (position) {
             case 0: return new FragmentAdd();
             case 1: return new FragmentSearch();
+            case 2: return new FragmentList();
         }
         return new FragmentAdd();
     }

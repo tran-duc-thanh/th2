@@ -32,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.icon_home);
         tabLayout.getTabAt(1).setIcon(R.drawable.icon_search);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icon_view_list);
     }
 }
