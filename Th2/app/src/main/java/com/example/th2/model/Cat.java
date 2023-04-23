@@ -1,6 +1,7 @@
 package com.example.th2.model;
 
 public class Cat {
+    private int id;
     private int img;
     private String name;
     private double price;
@@ -9,11 +10,27 @@ public class Cat {
     public Cat() {
     }
 
+    public Cat(int id, int img, String name, double price, String info) {
+        this.id = id;
+        this.img = img;
+        this.name = name;
+        this.price = price;
+        this.info = info;
+    }
+
     public Cat(int img, String name, double price, String info) {
         this.img = img;
         this.name = name;
         this.price = price;
         this.info = info;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getImg() {

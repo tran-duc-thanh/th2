@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.th2.MainActivity;
 import com.example.th2.R;
 import com.example.th2.adapter.SearchAdapter;
+import com.example.th2.dal.SQLiteHelper;
 import com.example.th2.model.Cat;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class FragmentList extends Fragment {
 
     private SearchAdapter adapter;
     private RecyclerView recyclerView;
-    private List<Cat> mList;
+    private SQLiteHelper db;
 
     @Nullable
     @Override
@@ -38,7 +39,8 @@ public class FragmentList extends Fragment {
         adapter = new SearchAdapter();
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
-        mList = ((MainActivity)getActivity()).list;
+        db = new SQLiteHelper(getContext());
+        List<Cat> mList = db.getAll();
         if (mList == null || mList.isEmpty()) {
             Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
         } else {
@@ -50,6 +52,6 @@ public class FragmentList extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mList = ((MainActivity)getActivity()).list;
+        adapter.setListCat(db.getAll());
     }
 }

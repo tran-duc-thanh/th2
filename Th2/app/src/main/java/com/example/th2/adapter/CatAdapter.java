@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.th2.MainActivity;
 import com.example.th2.R;
+import com.example.th2.dal.SQLiteHelper;
 import com.example.th2.model.Cat;
 
 import java.util.ArrayList;
@@ -23,10 +24,12 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
     private List<Cat> mList;
     private MainActivity mainActivity;
     private CatItemListener catItemListener;
+    private SQLiteHelper db;
 
     public CatAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         mList = new ArrayList<>();
+        db = new SQLiteHelper(mainActivity);
     }
 
     public void setCatItemListener(CatItemListener catItemListener) {
@@ -39,6 +42,11 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
 
     public List<Cat> getmList() {
         return mList;
+    }
+
+    public void setmList(List<Cat> mList) {
+        this.mList = mList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -60,9 +68,8 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
             builder.setTitle("Ban co chac chan xoa "+cat.getName()+" hay khong?");
             builder.setIcon(R.drawable.img);
             builder.setPositiveButton("Co", (dialogInterface, i) -> {
-                mList.remove(position);
+                db.delete(cat.getId());
                 notifyDataSetChanged();
-                mainActivity.list = mList;
             });
             builder.setNegativeButton("Khong", (dialogInterface, i) -> {});
             AlertDialog dialog = builder.create();
@@ -99,13 +106,11 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
     public void add (Cat cat) {
         mList.add(cat);
         notifyDataSetChanged();
-        mainActivity.list = mList;
     }
 
     public void update (Cat cat, int position) {
         mList.set(position, cat);
         notifyDataSetChanged();
-        mainActivity.list = mList;
     }
 
     public interface CatItemListener {

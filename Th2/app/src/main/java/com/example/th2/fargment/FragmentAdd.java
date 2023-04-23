@@ -18,6 +18,7 @@ import com.example.th2.MainActivity;
 import com.example.th2.R;
 import com.example.th2.adapter.CatAdapter;
 import com.example.th2.adapter.SpinnerAdapter;
+import com.example.th2.dal.SQLiteHelper;
 import com.example.th2.model.Cat;
 
 public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener {
@@ -27,6 +28,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
     private EditText eName, ePrice, eInfo;
     private Button btnAdd, btnUpdate;
     private RecyclerView recyclerView;
+    private SQLiteHelper db;
     private int pcurr;
     private int[] imgs = {R.drawable.cat2,R.drawable.cat3,R.drawable.cat4,R.drawable.cat5,R.drawable.cat6,R.drawable.cat7,R.drawable.cat8,R.drawable.cat9,R.drawable.cat10};
 
@@ -41,6 +43,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         adapter = new CatAdapter((MainActivity) getActivity());
+        adapter.setmList(db.getAll());
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
@@ -53,7 +56,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
                 img = imgs[Integer.parseInt(i)];
                 double price = Double.parseDouble(ePrice.getText().toString());
                 Cat cat = new Cat(img, eName.getText().toString(), price, eInfo.getText().toString());
-                adapter.add(cat);
+                db.add(cat);
                 this.resetForm();
             } catch (NumberFormatException e) {
                 ePrice.setError("Giá trị trường này là số");
@@ -66,18 +69,19 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
             try {
                 img = imgs[Integer.parseInt(i)];
                 double price = Double.parseDouble(ePrice.getText().toString());
-                Cat cat = new Cat(img, eName.getText().toString(), price, eInfo.getText().toString());
-                adapter.update(cat, pcurr);
+                Cat cat = new Cat(pcurr, img, eName.getText().toString(), price, eInfo.getText().toString());
+                db.update(cat);
                 btnUpdate.setVisibility(View.INVISIBLE);
                 btnAdd.setVisibility(View.VISIBLE);
                 this.resetForm();
             } catch (NumberFormatException e) {
-
+                ePrice.setError("Giá trị trường này là số");
             }
         });
     }
 
     private void initView(View view) {
+        db = new SQLiteHelper(getContext());
         spinner = view.findViewById(R.id.spinner);
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext(), imgs);
         spinner.setAdapter(spinnerAdapter);
@@ -109,8 +113,8 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
     public void onItemClick(View view, int position) {
         btnAdd.setVisibility(View.INVISIBLE);
         btnUpdate.setVisibility(View.VISIBLE);
-        pcurr = position;
         Cat cat = adapter.getItem(position);
+        pcurr = cat.getId();
         int img = cat.getImg();
         int p = 0;
         for (int i = 0; i <imgs.length; i++) {
@@ -123,5 +127,11 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
         eName.setText(cat.getName());
         ePrice.setText(cat.getPrice()+"");
         eInfo.setText(cat.getInfo());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.setmList(db.getAll());
     }
 }

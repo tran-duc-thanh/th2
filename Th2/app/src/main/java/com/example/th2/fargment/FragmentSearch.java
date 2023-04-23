@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.th2.MainActivity;
 import com.example.th2.R;
 import com.example.th2.adapter.SearchAdapter;
+import com.example.th2.dal.SQLiteHelper;
 import com.example.th2.model.Cat;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class FragmentSearch extends Fragment {
     private SearchAdapter adapter;
     private SearchView search;
     private RecyclerView recyclerView;
+    private SQLiteHelper db;
     private List<Cat> mList;
 
     @Nullable
@@ -36,6 +38,7 @@ public class FragmentSearch extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        db = new SQLiteHelper(getContext());
         search = view.findViewById(R.id.search);
         recyclerView = view.findViewById(R.id.reViewSearch);
         adapter = new SearchAdapter();
@@ -73,6 +76,6 @@ public class FragmentSearch extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mList = ((MainActivity)getActivity()).list;
+        adapter.setListCat(db.getAll());
     }
 }

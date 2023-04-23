@@ -15,8 +15,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public List<Cat> list = new ArrayList<>();
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FragmentAdapter adapter;
