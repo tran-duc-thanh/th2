@@ -45,6 +45,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return results;
     }
 
+    public List<Cat> search (String key) {
+        List<Cat> results = new ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor rs = database.query("cat", null, null, null, null, null, null);
+        while (rs != null && rs.moveToNext()) {
+            results.add(new Cat(rs.getInt(0), rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
+        }
+        return results;
+    }
+
     public Cat getOne (int id) {
         SQLiteDatabase database = getReadableDatabase();
         Cursor rs = database.rawQuery("SELECT * FROM cat WHERE id = ?", new String[]{String.valueOf(id)});
