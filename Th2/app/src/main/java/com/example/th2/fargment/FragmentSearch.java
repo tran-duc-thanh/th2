@@ -59,11 +59,7 @@ public class FragmentSearch extends Fragment {
 
             private void filter (String s) {
                 List<Cat> filterList = new ArrayList<>();
-                for (Cat i : mList) {
-                    if (i.getName().toLowerCase().contains(s.toLowerCase())) {
-                        filterList.add(i);
-                    }
-                }
+                filterList = db.search(s);
                 if (filterList.isEmpty()) {
                     Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
                 } else {

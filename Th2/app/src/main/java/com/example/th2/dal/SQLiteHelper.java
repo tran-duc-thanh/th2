@@ -48,7 +48,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public List<Cat> search (String key) {
         List<Cat> results = new ArrayList<>();
         SQLiteDatabase database = getReadableDatabase();
-        Cursor rs = database.query("cat", null, null, null, null, null, null);
+        Cursor rs = database.rawQuery("SELECT * FROM cat WHERE name LIKE ?", new String[]{String.valueOf("%"+key+"%")});
         while (rs != null && rs.moveToNext()) {
             results.add(new Cat(rs.getInt(0), rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4)));
         }

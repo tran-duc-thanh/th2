@@ -58,6 +58,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
                 Cat cat = new Cat(img, eName.getText().toString(), price, eInfo.getText().toString());
                 db.add(cat);
                 this.resetForm();
+                adapter.notifyDataSetChanged();
             } catch (NumberFormatException e) {
                 ePrice.setError("Giá trị trường này là số");
             }
@@ -74,6 +75,7 @@ public class FragmentAdd extends Fragment implements CatAdapter.CatItemListener 
                 btnUpdate.setVisibility(View.INVISIBLE);
                 btnAdd.setVisibility(View.VISIBLE);
                 this.resetForm();
+                adapter.notifyDataSetChanged();
             } catch (NumberFormatException e) {
                 ePrice.setError("Giá trị trường này là số");
             }
