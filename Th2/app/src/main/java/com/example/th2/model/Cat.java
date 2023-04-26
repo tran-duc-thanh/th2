@@ -1,6 +1,8 @@
 package com.example.th2.model;
 
-public class Cat {
+import java.io.Serializable;
+
+public class Cat implements Serializable {
     private int id;
     private int img;
     private String name;

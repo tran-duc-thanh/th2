@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.th2.fargment.FragmentAdd;
+import com.example.th2.fargment.FragmentDetail;
 import com.example.th2.fargment.FragmentList;
 import com.example.th2.fargment.FragmentSearch;
 
@@ -22,11 +22,11 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: return new FragmentAdd();
+            case 0: return new FragmentList();
             case 1: return new FragmentSearch();
-            case 2: return new FragmentList();
+            case 2: return new FragmentDetail();
         }
-        return new FragmentAdd();
+        return new FragmentDetail();
     }
 
     @Override

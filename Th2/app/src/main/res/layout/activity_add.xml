@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginVertical="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_cat" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:layout_margin="10dp"
+        android:stretchColumns="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow android:layout_marginVertical="5dp">
+            <TextView
+                android:text="Name:"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+            <EditText
+                android:id="@+id/eName"
+                android:hint="Nhap ten"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+        </TableRow>
+        <TableRow android:layout_marginVertical="5dp">
+            <TextView
+                android:text="Price:"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+            <EditText
+                android:id="@+id/ePrice"
+                android:hint="Nhap gia"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+        </TableRow>
+        <TableRow android:layout_marginVertical="5dp">
+            <TextView
+                android:text="Describe:"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+            <EditText
+                android:id="@+id/eDesc"
+                android:hint="Mo ta"
+                android:textColor="@color/grayBlue"
+                android:textSize="11dp" />
+        </TableRow>
+    </TableLayout>
+    <LinearLayout
+        android:layout_marginHorizontal="85dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:text="add"
+            android:background="@drawable/tabbar"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:text="BACK"
+            android:background="@drawable/tabbar"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

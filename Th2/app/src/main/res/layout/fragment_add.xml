@@ -8,73 +8,100 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
         android:src="@drawable/icon_cat" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TableLayout
-        android:stretchColumns="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow>
-            <TextView
-                android:text="Name:"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-            <EditText
-                android:id="@+id/eName"
-                android:hint="Nhap ten"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text="Price:"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-            <EditText
-                android:id="@+id/ePrice"
-                android:hint="Nhap gia"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text="Describe:"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-            <EditText
-                android:id="@+id/eDesc"
-                android:hint="Mo ta"
-                android:textColor="@color/grayBlue"
-                android:textSize="11dp" />
-        </TableRow>
-    </TableLayout>
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnAdd"
-            android:text="ADD"
-            android:background="@drawable/tabbar"
-            android:textColor="@color/white"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/btnUpdate"
-            android:text="UPDATE"
-            android:background="@drawable/tabbar"
-            android:textColor="@color/white"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reViewDetail"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp" />
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reView"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/detailImg"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/detailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price: "
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/detailPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Info: "
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/detailInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.th2.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     private List<Cat> mSearch;
+    private CatItemListener catItemListener;
 
     public SearchAdapter() {
         mSearch = new ArrayList<>();
@@ -26,6 +28,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void setListCat(List<Cat> mSearch) {
         this.mSearch = mSearch;
         notifyDataSetChanged();
+    }
+
+    public void setCatItemListener(CatItemListener catItemListener) {
+        this.catItemListener = catItemListener;
     }
 
     public List<Cat> getList() {
@@ -53,7 +59,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         return mSearch.size();
     }
 
-    public class SearchViewHolder extends RecyclerView.ViewHolder {
+    public Cat getItem (int i) {
+        return mSearch.get(i);
+    }
+
+    public class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView img;
         TextView name, price, info;
         public SearchViewHolder(@NonNull View itemView) {
@@ -62,6 +72,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             name = itemView.findViewById(R.id.item_name);
             price = itemView.findViewById(R.id.item_price);
             info = itemView.findViewById(R.id.item_desc);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            if (catItemListener != null) {catItemListener.onItemClick(view, getAdapterPosition());}
+        }
+    }
+
+    public interface CatItemListener {
+        void onItemClick (View view, int position);
     }
 }
