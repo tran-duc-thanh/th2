@@ -95,9 +95,9 @@ public class FragmentDetail extends Fragment implements SearchAdapter.CatItemLis
     }
 
     private void setText (Cat cat) {
-        img.setImageResource(cat.getImg());
-        name.setText(cat.getName());
-        price.setText(String.valueOf(cat.getPrice()));
-        info.setText(cat.getInfo());
+        img.setImageResource(R.drawable.cat2);
+        name.setText(cat.getDiaChi());
+        price.setText(String.valueOf(cat.getDienTich()));
+        info.setText(cat.getGia()+"");
     }
 }

@@ -4,27 +4,30 @@ import java.io.Serializable;
 
 public class Cat implements Serializable {
     private int id;
-    private int img;
-    private String name;
-    private double price;
-    private String info;
+    private String diaChi;
+    private String dichVu;
+    private double dienTich;
+    private double gia;
+    private Integer soNguoi;
 
     public Cat() {
     }
 
-    public Cat(int id, int img, String name, double price, String info) {
+    public Cat(int id, String diaChi, String dichVu, double dienTich, double gia, Integer soNguoi) {
         this.id = id;
-        this.img = img;
-        this.name = name;
-        this.price = price;
-        this.info = info;
+        this.diaChi = diaChi;
+        this.dichVu = dichVu;
+        this.dienTich = dienTich;
+        this.gia = gia;
+        this.soNguoi = soNguoi;
     }
 
-    public Cat(int img, String name, double price, String info) {
-        this.img = img;
-        this.name = name;
-        this.price = price;
-        this.info = info;
+    public Cat(String diaChi, String dichVu, double dienTich, double gia, Integer soNguoi) {
+        this.diaChi = diaChi;
+        this.dichVu = dichVu;
+        this.dienTich = dienTich;
+        this.gia = gia;
+        this.soNguoi = soNguoi;
     }
 
     public int getId() {
@@ -35,35 +38,43 @@ public class Cat implements Serializable {
         this.id = id;
     }
 
-    public int getImg() {
-        return img;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
-    public String getName() {
-        return name;
+    public String getDichVu() {
+        return dichVu;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDichVu(String dichVu) {
+        this.dichVu = dichVu;
     }
 
-    public double getPrice() {
-        return price;
+    public double getDienTich() {
+        return dienTich;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setDienTich(double dienTich) {
+        this.dienTich = dienTich;
     }
 
-    public String getInfo() {
-        return info;
+    public double getGia() {
+        return gia;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setGia(double gia) {
+        this.gia = gia;
+    }
+
+    public Integer getSoNguoi() {
+        return soNguoi;
+    }
+
+    public void setSoNguoi(Integer soNguoi) {
+        this.soNguoi = soNguoi;
     }
 }

@@ -59,13 +59,13 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.CatViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CatViewHolder holder, int position) {
         Cat cat = mList.get(position);
-        holder.img.setImageResource(cat.getImg());
-        holder.name.setText(cat.getName());
-        holder.price.setText(cat.getPrice()+"");
-        holder.info.setText(cat.getInfo());
+        holder.img.setImageResource(R.drawable.cat2);
+        holder.name.setText(cat.getDiaChi());
+        holder.price.setText(cat.getDienTich()+"");
+        holder.info.setText(cat.getGia()+"");
         holder.btnRemove.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            builder.setTitle("Ban co chac chan xoa "+cat.getName()+" hay khong?");
+            builder.setTitle("Ban co chac chan xoa "+cat.getDiaChi()+" hay khong?");
             builder.setIcon(R.drawable.img);
             builder.setPositiveButton("Co", (dialogInterface, i) -> {
                 db.delete(cat.getId());
